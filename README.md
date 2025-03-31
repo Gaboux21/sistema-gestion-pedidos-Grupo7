@@ -9,7 +9,10 @@ Este proyecto es una aplicación desarrollada con **Spring Boot**, **JPA**, **Ka
 - 🏗️ Arquitectura **MVC** para una mejor organización del código.  
 
 ## 🛠️ Tecnologías  
-- **Backend**: Java + Spring Boot  
-- **Base de datos**: PostgreSQL  
-- **Mensajería**: Apache Kafka  
-- **Seguridad**: Spring Security + JWT 
+-	**Spring Boot**: Framework principal para el desarrollo del backend.
+-	**JPA (Hibernate)**: Mapeo objeto-relacional para la persistencia de datos.
+-	**Apache Kafka**: Comunicación asincrónica y notificaciones.
+-	**Spring Security y JWT**: Autenticación y autorización seguras.
+-	**PostgreSQL**: Motor de base de datos.
+-	**Postman**: Testing y documentación de endpoints.
+
