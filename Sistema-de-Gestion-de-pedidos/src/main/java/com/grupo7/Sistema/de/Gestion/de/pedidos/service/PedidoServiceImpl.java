@@ -14,14 +14,14 @@ import java.util.List;
 public class PedidoServiceImpl implements PedidoService{
 
     @Autowired
-    private PedidoRepository pedidoRepo;
+    private PedidoRepository pedidoRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepo;
+    private UsuarioRepository usuarioRepository;
 
     @Override
     public Pedido crearPedido(PedidoDTO pedidoDTO) {
-        Usuario usuario = usuarioRepo.findById(pedidoDTO.getUsuarioId())
+        Usuario usuario = usuarioRepository.findById(pedidoDTO.getUsuarioId())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         Pedido pedido = new Pedido();
@@ -30,12 +30,12 @@ public class PedidoServiceImpl implements PedidoService{
         pedido.setPrecioTotal(pedidoDTO.getPrecioTotal());
         pedido.setUsuario(usuario);
 
-        return pedidoRepo.save(pedido);
+        return pedidoRepository.save(pedido);
     }
 
     @Override
     public List<Pedido> listarPedidos() {
-        return pedidoRepo.findAll();
+        return pedidoRepository.findAll();
     }
 
 }

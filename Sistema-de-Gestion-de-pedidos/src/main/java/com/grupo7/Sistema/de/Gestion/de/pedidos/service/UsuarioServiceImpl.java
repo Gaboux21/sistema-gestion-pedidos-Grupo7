@@ -6,6 +6,7 @@ import com.grupo7.Sistema.de.Gestion.de.pedidos.model.Usuario;
 import com.grupo7.Sistema.de.Gestion.de.pedidos.repository.RolRepository;
 import com.grupo7.Sistema.de.Gestion.de.pedidos.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,8 +17,16 @@ import java.util.Set;
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
+    private final PasswordEncoder passwordEncoder;
+    private final UsuarioRepository usuarioRepository;
+    private final RolRepository rolRepository;
+
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, RolRepository rolRepository, PasswordEncoder passwordEncoder) {
+        this.usuarioRepository = usuarioRepository;
+        this.rolRepository = rolRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Autowired
     private RolRepository rolRepo;

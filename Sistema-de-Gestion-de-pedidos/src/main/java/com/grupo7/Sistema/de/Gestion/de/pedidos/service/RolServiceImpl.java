@@ -12,17 +12,17 @@ import java.util.List;
 public class RolServiceImpl implements RolService {
 
     @Autowired
-    private RolRepository rolRepo;
+    private RolRepository rolRepository;
 
     @Override
     public Rol crearRol(RolDTO rolDTO) {
         Rol rol = new Rol();
         rol.setNombre(rolDTO.getNombre());
-        return rolRepo.save(rol);
+        return rolRepository.save(rol);
     }
 
     @Override
     public List<Rol> listarRoles() {
-        return rolRepo.findAll();
+        return rolRepository.findAll();
     }
 }
