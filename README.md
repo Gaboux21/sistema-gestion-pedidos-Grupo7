@@ -16,3 +16,29 @@ Este proyecto es una aplicación desarrollada con **Spring Boot**, **JPA**, **Ka
 -	**PostgreSQL**: Motor de base de datos.
 -	**Postman**: Testing y documentación de endpoints.
 
+## 🧱 Arquitectura
+
+Este proyecto sigue el patrón **MVC**:
+
+- **Model**: Entidades (Usuario, Rol, Pedido, etc.)
+- **View**: No aplica (API REST)
+- **Controller**: Controladores REST
+- **Security**: Spring Security + JWT
+- **Messaging**: Kafka para comunicación asíncrona
+
+---
+
+## ⚙️ Configuración del Proyecto
+
+### 1. Clonar el repositorio
+
+### 2. Configurar Base de Datos
+
+### 3. Configurar Apache Kafka
+
+### 4. Construir el Proyecto
+
+### 5. Ejecutar la Aplicación
+
+
+
