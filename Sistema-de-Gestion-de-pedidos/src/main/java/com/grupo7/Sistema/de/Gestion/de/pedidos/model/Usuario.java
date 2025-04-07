@@ -30,14 +30,14 @@ public class Usuario {
             message = "La contraseña debe incluir números, letras y un carácter especial")
     private String password;
 
-    @Column(nullable = false)
+    @Column(name = "signupdate",nullable = false)
     private LocalDate signUpDate;
 
-    @Column(nullable = false)
+    @Column(name = "totalspent", nullable = false)
     private Double totalSpent = 0.0;
 
     @ManyToOne
-    @JoinColumn(name = "rol")
+    @JoinColumn(name = "rol", nullable = false)
     private Rol rol;
 
     public Long getId() {

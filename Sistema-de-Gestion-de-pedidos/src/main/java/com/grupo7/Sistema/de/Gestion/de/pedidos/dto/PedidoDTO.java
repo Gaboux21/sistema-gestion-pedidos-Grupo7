@@ -1,27 +1,19 @@
 package com.grupo7.Sistema.de.Gestion.de.pedidos.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import java.util.List;
+
 public class PedidoDTO {
 
-    private String producto;
-    private Integer cantidad;
-    private Double precioTotal;
-    private Long usuarioId;
+    @NotNull(message = "El ID del usuario no puede ser nulo.")
+    private Long usuarioId; // ID del usuario que realiza el pedido
 
-    public String getProducto() {
-        return producto;
-    }
+    @NotEmpty(message = "El pedido debe contener al menos un producto.")
+    private List<DetallePedidoDTO> detalles; // Lista de productos y cantidades
 
-    public void setProducto(String producto) {
-        this.producto = producto;
-    }
-
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
+    // Getters y setters
 
     public Long getUsuarioId() {
         return usuarioId;
@@ -31,11 +23,11 @@ public class PedidoDTO {
         this.usuarioId = usuarioId;
     }
 
-    public Double getPrecioTotal() {
-        return precioTotal;
+    public List<DetallePedidoDTO> getDetalles() {
+        return detalles;
     }
 
-    public void setPrecioTotal(Double precioTotal) {
-        this.precioTotal = precioTotal;
+    public void setDetalles(List<DetallePedidoDTO> detalles) {
+        this.detalles = detalles;
     }
 }

@@ -28,9 +28,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Autowired
-    private RolRepository rolRepo;
-
     @Override
     public Usuario crearUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario();
@@ -40,8 +37,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setSignUpDate(LocalDate.now());
         usuario.setTotalSpent(0.0);
 
-        Rol rol = RolRepository.buscarPorNombre("USER").orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+        Rol rol = rolRepository.findById(usuarioDTO.getRolId())
+                .orElseThrow(() -> new RuntimeException("Rol no encontrado con ID: " + usuarioDTO.getRolId()));
         usuario.setRol(rol);
+
         return usuarioRepository.save(usuario);
     }
 

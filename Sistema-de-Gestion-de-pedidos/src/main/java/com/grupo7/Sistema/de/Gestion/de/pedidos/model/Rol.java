@@ -36,7 +36,8 @@ public class Rol {
         return descripcion;
     }
 
-    public void setDescription(String descripcion) {
-        this.descripcion = this.descripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
+
 }

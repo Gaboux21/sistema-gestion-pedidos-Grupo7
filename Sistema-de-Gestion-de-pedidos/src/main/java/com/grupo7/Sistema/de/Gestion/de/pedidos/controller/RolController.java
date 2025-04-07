@@ -19,7 +19,7 @@ public class RolController {
 
     @PostMapping
     public ResponseEntity<Rol> crearRol(@RequestBody RolDTO rolDTO){
-        return new ResponseEntity<>(rolService.crearRol(rolDTO), HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(rolService.crearRol(rolDTO));
     }
 
     @GetMapping

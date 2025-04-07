@@ -5,7 +5,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +12,8 @@ import java.util.function.Function;
 
 @Component
 public class JwtUtil {
-    private String SECRET_KEY = "secret";
+
+    private String SECRET_KEY = "MiPasswordClaveSecretaconHS256SecretKey12345";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -29,8 +29,9 @@ public class JwtUtil {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser()
+        return Jwts.parserBuilder()
                 .setSigningKey(SECRET_KEY)
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
     }

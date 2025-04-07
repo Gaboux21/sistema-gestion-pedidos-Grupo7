@@ -1,16 +1,41 @@
 package com.grupo7.Sistema.de.Gestion.de.pedidos.dto;
 
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDate;
-import java.util.Set;
 
 public class UsuarioDTO {
 
+    private Long id;
+
+    @NotBlank(message = "El nombre no puede estar vacío")
     private String nombre;
+
+    @NotBlank(message = "El email no puede estar vacío")
+    @Email(message = "El email debe tener un formato válido")
     private String email;
+
+    @NotBlank(message = "La contraseña no puede estar vacía")
+    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).*$",
+            message = "La contraseña debe incluir números, letras y un carácter especial")
+
     private String password;
+
     private LocalDate signUpdate;
+
     private Double totalSpent;
+
+    @NotNull(message = "Debe especificarse un rol para el usuario")
     private Long rolId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -56,7 +81,7 @@ public class UsuarioDTO {
         return rolId;
     }
 
-    public void setRolId(Long roleId) {
-        this.rolId = roleId;
+    public void setRolId(Long rolId) {
+        this.rolId = rolId;
     }
 }
