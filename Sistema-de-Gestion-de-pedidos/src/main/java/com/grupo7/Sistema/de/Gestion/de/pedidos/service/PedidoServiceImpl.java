@@ -1,5 +1,6 @@
 package com.grupo7.Sistema.de.Gestion.de.pedidos.service;
 
+import com.grupo7.Sistema.de.Gestion.de.pedidos.Kafka.PedidoProducer;
 import com.grupo7.Sistema.de.Gestion.de.pedidos.dto.DetallePedidoDTO;
 import com.grupo7.Sistema.de.Gestion.de.pedidos.model.DetallePedido;
 import com.grupo7.Sistema.de.Gestion.de.pedidos.model.Pedido;
@@ -17,6 +18,9 @@ import java.util.List;
 
 @Service
 public class PedidoServiceImpl implements PedidoService {
+
+    @Autowired
+    private PedidoProducer pedidoProducer; // Agregamos el productor
 
     @Autowired
     private PedidoRepository pedidoRepository;
@@ -61,7 +65,9 @@ public class PedidoServiceImpl implements PedidoService {
 
         pedido.setDetalles(detalles);
         pedido.setTotal(total);
-        return pedidoRepository.save(pedido);
+        Pedido nuevoPedido = pedidoRepository.save(pedido);
+        pedidoProducer.enviarCreacionPedido("Pedido creado con ID: " + nuevoPedido.getId());
+        return nuevoPedido;
     }
 
     @Override
@@ -99,7 +105,10 @@ public class PedidoServiceImpl implements PedidoService {
 
         pedido.setDetalles(nuevosDetalles);
         pedido.setTotal(nuevoTotal);
-        return pedidoRepository.save(pedido);
+
+        Pedido pedidoModificado = pedidoRepository.save(pedido);
+        pedidoProducer.enviarModificacionPedido("Pedido modificado con ID: " + pedidoModificado.getId());
+        return pedidoModificado;
     }
 
     @Override
@@ -115,6 +124,8 @@ public class PedidoServiceImpl implements PedidoService {
 
         pedido.setEstado("CANCELADO");
         pedidoRepository.save(pedido);
+
+        pedidoProducer.enviarCancelacionPedido("Pedido cancelado con ID: " + pedidoId);
     }
 
     @Override
