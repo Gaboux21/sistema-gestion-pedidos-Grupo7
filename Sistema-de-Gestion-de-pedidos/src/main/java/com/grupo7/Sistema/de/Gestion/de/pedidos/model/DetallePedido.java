@@ -14,6 +14,10 @@ public class DetallePedido {
         @JoinColumn(name = "producto_id", nullable = false)
         private Producto producto;
 
+        @ManyToOne
+        @JoinColumn(name = "pedido_id", nullable = false)
+        private Pedido pedido;
+
         @Column(nullable = false)
         private Integer cantidad;
 
@@ -36,7 +40,15 @@ public class DetallePedido {
             this.producto = producto;
         }
 
-        public Integer getCantidad() {
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public Integer getCantidad() {
             return cantidad;
         }
 
